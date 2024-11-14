@@ -1,0 +1,6 @@
+{
+    "csharpextensions.privateMemberPrefix": "_",
+    "csharpextensions.useThisForCtorAssignments": false,
+    "git.enableCommitSigning": false,
+    "git.enableSmartCommit": false
+}
