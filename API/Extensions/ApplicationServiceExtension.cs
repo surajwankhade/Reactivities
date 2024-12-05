@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Application.Activities;
 using Application.Core;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence;
@@ -12,7 +14,8 @@ namespace API.Extensions
 {
     public static class ApplicationServiceExtension
     {
-        public static IServiceCollection AddApplicationService(this IServiceCollection services, IConfiguration config)
+        public static IServiceCollection AddApplicationService(this IServiceCollection services,
+        IConfiguration config)
         {
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
@@ -32,6 +35,8 @@ namespace API.Extensions
             services.AddMediatR(cfg =>cfg.RegisterServicesFromAssemblies(typeof(List.Handler).Assembly));
             //services.AddMediatR(typeof(List.Handler));// to do
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);
+            services.AddFluentValidationAutoValidation();
+            services.AddValidatorsFromAssemblyContaining<Create>();
             return services;
         }
     }
